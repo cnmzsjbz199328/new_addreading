@@ -41,12 +41,12 @@ const BOOKS = [
 export default function BooksPage() {
   const [selectedBook, setSelectedBook] = useState<typeof BOOKS[0] | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedGenre, setSelectedGenre] = useState<string>("");
+  const [selectedGenre, setSelectedGenre] = useState<string>("all");
 
   const filteredBooks = BOOKS.filter((book) => {
     const matchesSearch = book.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       book.author.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesGenre = !selectedGenre || book.genre === selectedGenre;
+    const matchesGenre = selectedGenre === 'all' || book.genre === selectedGenre;
     return matchesSearch && matchesGenre;
   });
 
@@ -76,7 +76,7 @@ export default function BooksPage() {
             <SelectValue placeholder="Select Genre" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="">All Genres</SelectItem>
+            <SelectItem value="all">All Genres</SelectItem>
             <SelectItem value="Classic">Classic</SelectItem>
             <SelectItem value="Science Fiction">Science Fiction</SelectItem>
             <SelectItem value="Mystery">Mystery</SelectItem>
