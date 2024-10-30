@@ -1,114 +1,79 @@
 "use client";
 
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Book, Calendar, User } from "lucide-react";
+import { Card } from "@/components/ui/card";
+import { ScrollArea } from "@/components/ui/scroll-area";
+
+// 示例用户数据
+const USER = {
+  name: "John Doe",
+  email: "john@example.com",
+  avatar: "https://github.com/shadcn.png",
+  joinDate: "2024-01-01",
+  booksCreated: 5,
+  meetingsCreated: 3,
+  meetingsAttended: 12,
+};
 
 export default function ProfilePage() {
-  const [isEditing, setIsEditing] = useState(false);
-  const [profile, setProfile] = useState({
-    name: "John Doe",
-    email: "john@example.com",
-    avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    booksRead: 24,
-    meetingsAttended: 12,
-  });
-
   return (
     <div className="container py-8">
       <div className="max-w-4xl mx-auto">
-        <Card>
-          <CardHeader className="flex flex-row items-center gap-4">
-            <Avatar className="h-20 w-20">
-              <AvatarImage src={profile.avatar} alt={profile.name} />
-              <AvatarFallback>
-                <User className="h-10 w-10" />
-              </AvatarFallback>
-            </Avatar>
-            <div className="flex-1">
-              <CardTitle>{profile.name}</CardTitle>
-              <CardDescription>{profile.email}</CardDescription>
-            </div>
-            <Button
-              variant="outline"
-              onClick={() => setIsEditing(!isEditing)}
-            >
-              {isEditing ? "Save Changes" : "Edit Profile"}
-            </Button>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-2 gap-4 mb-6">
-              <div className="flex items-center gap-2">
-                <Book className="h-5 w-5 text-muted-foreground" />
-                <div>
-                  <p className="text-sm font-medium">{profile.booksRead}</p>
-                  <p className="text-sm text-muted-foreground">Books Read</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-2">
-                <Calendar className="h-5 w-5 text-muted-foreground" />
-                <div>
-                  <p className="text-sm font-medium">{profile.meetingsAttended}</p>
-                  <p className="text-sm text-muted-foreground">Meetings Attended</p>
-                </div>
-              </div>
+        <div className="flex items-start gap-8">
+          {/* 左侧个人信息 */}
+          <Card className="p-6 flex-1">
+            <div className="flex flex-col items-center text-center">
+              <Avatar className="h-24 w-24 mb-4">
+                <AvatarImage src={USER.avatar} alt={USER.name} />
+                <AvatarFallback>{USER.name[0]}</AvatarFallback>
+              </Avatar>
+              <h2 className="text-2xl font-bold">{USER.name}</h2>
+              <p className="text-muted-foreground">{USER.email}</p>
+              <p className="text-sm text-muted-foreground mt-1">
+                Joined {USER.joinDate}
+              </p>
+              <Button className="mt-4" variant="outline">
+                Edit Profile
+              </Button>
             </div>
 
-            {isEditing ? (
-              <div className="space-y-4">
-                <div className="grid gap-2">
-                  <Label htmlFor="name">Name</Label>
-                  <Input
-                    id="name"
-                    value={profile.name}
-                    onChange={(e) =>
-                      setProfile({ ...profile, name: e.target.value })
-                    }
-                  />
-                </div>
-                <div className="grid gap-2">
-                  <Label htmlFor="email">Email</Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    value={profile.email}
-                    onChange={(e) =>
-                      setProfile({ ...profile, email: e.target.value })
-                    }
-                  />
-                </div>
+            <div className="mt-8 grid grid-cols-3 gap-4 text-center">
+              <div>
+                <div className="text-2xl font-bold">{USER.booksCreated}</div>
+                <div className="text-sm text-muted-foreground">Books Created</div>
               </div>
-            ) : (
-              <Tabs defaultValue="reading-list" className="w-full">
-                <TabsList className="mb-4">
-                  <TabsTrigger value="reading-list">Reading List</TabsTrigger>
-                  <TabsTrigger value="meetings">My Meetings</TabsTrigger>
-                </TabsList>
-                <TabsContent value="reading-list">
-                  <div className="text-center py-8 text-muted-foreground">
-                    Your reading list is empty
-                  </div>
-                </TabsContent>
-                <TabsContent value="meetings">
-                  <div className="text-center py-8 text-muted-foreground">
-                    No upcoming meetings
-                  </div>
-                </TabsContent>
-              </Tabs>
-            )}
-          </CardContent>
-        </Card>
+              <div>
+                <div className="text-2xl font-bold">{USER.meetingsCreated}</div>
+                <div className="text-sm text-muted-foreground">Meetings Created</div>
+              </div>
+              <div>
+                <div className="text-2xl font-bold">{USER.meetingsAttended}</div>
+                <div className="text-sm text-muted-foreground">Meetings Attended</div>
+              </div>
+            </div>
+          </Card>
+
+          {/* 右侧活动历史 */}
+          <Card className="p-6 flex-1">
+            <h3 className="text-lg font-semibold mb-4">Recent Activity</h3>
+            <ScrollArea className="h-[400px]">
+              <div className="space-y-4">
+                <div className="border-b pb-4">
+                  <p className="font-medium">Created a new book</p>
+                  <p className="text-sm text-muted-foreground">Web Development Best Practices</p>
+                  <p className="text-xs text-muted-foreground">2 days ago</p>
+                </div>
+                <div className="border-b pb-4">
+                  <p className="font-medium">Attended a meeting</p>
+                  <p className="text-sm text-muted-foreground">React Development Discussion</p>
+                  <p className="text-xs text-muted-foreground">5 days ago</p>
+                </div>
+                {/* Add more activity items as needed */}
+              </div>
+            </ScrollArea>
+          </Card>
+        </div>
       </div>
     </div>
   );

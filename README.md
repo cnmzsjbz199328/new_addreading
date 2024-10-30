@@ -2,6 +2,20 @@
 
 [Edit in StackBlitz next generation editor ⚡️](https://stackblitz.com/~/github.com/cnmzsjbz199328/new_addreading)
 
+## Feature Updates (功能更新记录)
+
+### 2024-03-21
+- Added Profile Page:
+  - Created new profile page with user information display
+  - Added user statistics (books created, meetings created/attended)
+  - Implemented recent activity timeline
+  - Added profile editing capability
+- Enhanced Navigation:
+  - Added clickable user icon in navigation bar
+  - Linked user icon to profile page
+  - Added hover and active states for user icon
+- Previous updates...
+
 ## Security Updates (安全更新记录)
 
 ### 2024-03-21

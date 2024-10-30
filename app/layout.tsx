@@ -3,13 +3,14 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from '@/components/ui/sonner';
-import Header from '@/components/header';
+import { MainNav } from '@/components/main-nav';
+import { ModeToggle } from '@/components/mode-toggle';
 
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Reading Club',
-  description: 'Join our reading club to discover and discuss great books together',
+  description: 'A community for book lovers',
 };
 
 export default function RootLayout({
@@ -26,7 +27,14 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Header />
+          <div className="border-b">
+            <div className="flex h-16 items-center px-4">
+              <MainNav />
+              <div className="ml-auto flex items-center space-x-4">
+                <ModeToggle />
+              </div>
+            </div>
+          </div>
           <main className="min-h-screen bg-background">{children}</main>
           <Toaster />
         </ThemeProvider>
