@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { BookOpen, Users, User } from "lucide-react";
+import { ModeToggle } from "./mode-toggle";
 
 export function MainNav() {
   const pathname = usePathname();
@@ -50,6 +51,7 @@ export function MainNav() {
         >
           <User className="h-6 w-6" />
         </Link>
+        <ModeToggle />
       </div>
     </div>
   );

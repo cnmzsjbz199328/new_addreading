@@ -30,9 +30,6 @@ export default function RootLayout({
           <div className="border-b">
             <div className="flex h-16 items-center px-4">
               <MainNav />
-              <div className="ml-auto flex items-center space-x-4">
-                <ModeToggle />
-              </div>
             </div>
           </div>
           <main className="min-h-screen bg-background">{children}</main>
