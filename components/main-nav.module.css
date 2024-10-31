@@ -1,0 +1,67 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  height: 100%;
+}
+
+@media (min-width: 1024px) {
+  .container {
+    gap: 1.5rem;
+  }
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+@media (min-width: 1024px) {
+  .nav {
+    gap: 1.5rem;
+  }
+}
+
+.link {
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition-property: color;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.link:hover {
+  color: hsl(var(--primary));
+}
+
+.activeLink {
+  color: hsl(var(--primary));
+}
+
+.inactiveLink {
+  color: hsl(var(--muted-foreground));
+}
+
+.rightSection {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.profileLink {
+  padding: 0.5rem;
+  border-radius: 9999px;
+  transition-property: background-color;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.profileLink:hover {
+  background-color: hsl(var(--accent));
+}
+
+.activeProfile {
+  background-color: hsl(var(--accent));
+}

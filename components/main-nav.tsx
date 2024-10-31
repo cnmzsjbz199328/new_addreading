@@ -2,22 +2,23 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { cn } from "@/lib/utils";
 import { BookOpen, Users, User } from "lucide-react";
 import { ModeToggle } from "./mode-toggle";
+import styles from "./main-nav.module.css";
+import { cn } from "@/lib/utils";
 
 export function MainNav() {
   const pathname = usePathname();
 
   return (
-    <div className="flex items-center space-x-4 lg:space-x-6">
+    <div className={styles.container}>
       <BookOpen className="h-6 w-6" />
-      <nav className="flex items-center space-x-4 lg:space-x-6">
+      <nav className={styles.nav}>
         <Link
           href="/"
           className={cn(
-            "text-sm font-medium transition-colors hover:text-primary",
-            pathname === "/" ? "text-primary" : "text-muted-foreground"
+            styles.link,
+            pathname === "/" ? styles.activeLink : styles.inactiveLink
           )}
         >
           Reading Club
@@ -25,8 +26,8 @@ export function MainNav() {
         <Link
           href="/meetings"
           className={cn(
-            "text-sm font-medium transition-colors hover:text-primary",
-            pathname === "/meetings" ? "text-primary" : "text-muted-foreground"
+            styles.link,
+            pathname === "/meetings" ? styles.activeLink : styles.inactiveLink
           )}
         >
           My Meetings
@@ -34,19 +35,19 @@ export function MainNav() {
         <Link
           href="/my-books"
           className={cn(
-            "text-sm font-medium transition-colors hover:text-primary",
-            pathname === "/my-books" ? "text-primary" : "text-muted-foreground"
+            styles.link,
+            pathname === "/my-books" ? styles.activeLink : styles.inactiveLink
           )}
         >
           My Books
         </Link>
       </nav>
-      <div className="ml-auto flex items-center space-x-4">
+      <div className={styles.rightSection}>
         <Link
           href="/profile"
           className={cn(
-            "p-2 rounded-full hover:bg-accent transition-colors",
-            pathname === "/profile" && "bg-accent"
+            styles.profileLink,
+            pathname === "/profile" && styles.activeProfile
           )}
         >
           <User className="h-6 w-6" />

@@ -4,7 +4,6 @@ import { Inter } from 'next/font/google';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from '@/components/ui/sonner';
 import { MainNav } from '@/components/main-nav';
-import { ModeToggle } from '@/components/mode-toggle';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -28,7 +27,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <div className="border-b">
-            <div className="flex h-16 items-center px-4">
+            <div className="h-16 px-4">
               <MainNav />
             </div>
           </div>
